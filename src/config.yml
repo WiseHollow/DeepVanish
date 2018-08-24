@@ -1,0 +1,5 @@
+Join_Message: '&e%p joined the game'
+Quit_Message: '&e%p left the game'
+Vanish_Tool: WATCH
+Allow_Metrics: true
+Silent_Join: []

@@ -1,0 +1,47 @@
+name: DeepVanish
+version: 3.1.1
+author: WiseHollow
+main: net.johnbrooks.deepvanish.Main
+api-version: 1.13
+
+loadbefore: [ Essentials, FundamentalsX ]
+
+commands:
+      Vanish:
+               description: Will vanish on the spot.
+               usage: /<command>
+               aliases: van
+      Rea:
+               description: Reappear and become visible.
+               usage: /<command>
+      Vanhelp:
+               description: Get a list of commands
+               usage: /<command>
+      VanWho:
+               description: See a list of vanished players.
+               usage: /<command>
+      VanJoin:
+               description: Send join message to chat.
+               usage: /<command>
+      VanLeave:
+               description: Send quit message to chat.
+               usage: /<command>
+      VanPickup:
+               description: Toggle the ability to pickup items while vanished.
+               usage: /<command>
+      VanAdd:
+               description: When you join, you are auto-vanished.
+               usage: /<command>
+      VanRemove:
+               description: When you join, you are regular.
+               usage: /<command>
+      VanReload:
+               description: Reload settings from configuration.
+               usage: /<command>
+permissions:
+      DeepVanish.Use:
+               description: Can toggle vanish state.
+               default: op
+      DeepVanish.See:
+               description: Can see vanished players.
+               default: op
