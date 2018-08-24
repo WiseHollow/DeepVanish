@@ -9,13 +9,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.metadata.FixedMetadataValue;
@@ -79,7 +79,7 @@ public class VanishTask implements Listener
     {
         player.removeMetadata("vanished", Main.plugin);
         player.sendMessage(Settings.PREFIX + "You are no longer vanished!");
-        EntityPickupItemEvent.getHandlerList().unregister(this);
+        PlayerPickupItemEvent.getHandlerList().unregister(this);
         EntityTargetLivingEntityEvent.getHandlerList().unregister(this);
         PlayerQuitEvent.getHandlerList().unregister(this);
         PlayerJoinEvent.getHandlerList().unregister(this);
@@ -91,7 +91,7 @@ public class VanishTask implements Listener
         for(Player p : Bukkit.getOnlinePlayers())
         {
             if (!p.equals(player))
-                p.showPlayer(Main.plugin, player);
+                p.showPlayer(player);
         }
 
         tasks.remove(this);
@@ -104,9 +104,9 @@ public class VanishTask implements Listener
             if (p.equals(player))
                 continue;
             if (!p.hasPermission("DeepVanish.See"))
-                p.hidePlayer(Main.plugin, player);
+                p.hidePlayer(player);
             else
-                p.showPlayer(Main.plugin, player);
+                p.showPlayer(player);
         }
     }
 
@@ -117,9 +117,9 @@ public class VanishTask implements Listener
     }
 
     @EventHandler
-    public void DisablePickup(EntityPickupItemEvent event)
+    public void DisablePickup(PlayerPickupItemEvent event)
     {
-        if (!event.isCancelled() && event.getEntity() instanceof Player && event.getEntity().equals(player) && !pickup) {
+        if (!event.isCancelled() && event.getPlayer().equals(player) && !pickup) {
             event.setCancelled(true);
         }
     }

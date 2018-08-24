@@ -34,7 +34,7 @@ public class Events implements Listener
     @EventHandler
     public void VanishTool(PlayerInteractEvent event)
     {
-        if (event.isCancelled() || !event.getPlayer().hasPermission("DeepVanish.Use") || event.getPlayer().getInventory().getItemInMainHand().getType() != Settings.VanishTool)
+        if (event.isCancelled() || !event.getPlayer().hasPermission("DeepVanish.Use") || event.getPlayer().getInventory().getItemInHand().getType() != Settings.VanishTool)
             return;
 
         event.setCancelled(true);
@@ -60,7 +60,7 @@ public class Events implements Listener
         {
             for (Player p2 : Bukkit.getServer().getOnlinePlayers())
             {
-                p.showPlayer(Main.plugin, p2);
+                p.showPlayer(p2);
             }
         }
     }
